@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра: Вгадай слово</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #a8c0ff, #3f2b96);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #3f2b96;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2b1e73;
+        }
+    </style>
+</head>
+<body>
+    <h1>Гра: Вгадай слово</h1>
+    <script>
+        "use strict";
+        const wordsToGuess = ["яблуко", "банан", "апельсин", "груша", "ківі"]; // Масив слів
+        const randomWord = wordsToGuess[Math.floor(Math.random() * wordsToGuess.length)]; // Випадкове слово
+        let answer = confirm("Яке слово я загадала? Яблуко, банан, апельсин, груша, ківі?");
+
+        if (answer) {
+            let attempts = 0; // Лічильник спроб
+            const maxAttempts = 5; // Максимальна кількість спроб
+
+            while (attempts < maxAttempts) {
+                let userGuess = prompt("Введіть слово, яке хочете вгадати:");
+
+                if (userGuess) {
+                    if (userGuess.toLowerCase() === randomWord) {
+                        alert("Ви вгадали! Загадане слово: " + randomWord);
+                        break; // Вийти з циклу, якщо слово вгадано
+                    } else {
+                        attempts++; // Збільшити лічильник спроб
+                        alert("На жаль, ви не вгадали. У вас залишилось спроб: " + (maxAttempts - attempts));
+                    }
+                } else {
+                    alert("Ви нічого не ввели. Спробуйте ще раз!");
+                }
+
+                // Якщо вичерпані всі спроби
+                if (attempts === maxAttempts) {
+                    alert("Вибачте, ви не вгадали. Загадане слово було: " + randomWord);
+                }
+            }
+        } else {
+            alert("Шкода. Може бути в інший раз?");
+        }
+    </script>
+</body>
+</html>
